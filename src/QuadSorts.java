@@ -1,51 +1,127 @@
 public class QuadSorts {
 
-    public static int[] bubbleSort(int[] arr){
+    public static int[] bubbleSort(int[] arr) {
         boolean sorted = false;
-        for (int i = 0; i < arr.length; i++)
-            System.out.print(arr[i]+" | ");
-        System.out.println();
+        long start = System.currentTimeMillis();
 
-        //while (!sorted)
-       // {
-            int p = 0;
-            int num = arr[p];
+        while (!sorted)
+        {
             sorted = true;
-
-            for (int i = 0; i < arr.length; i++)
+            for (int i = 0; i < arr.length-1; i++)
             {
-                if (!(arr[p] < arr[i]))
+                if (arr[i] > arr[i+1])
                 {
-                    arr[p] = arr[i];
-                    arr[i+1] = num;
-                    p = i+1;
+                    sorted = false;
+                    int temp = arr[i+1];
+                    arr[i+1] = arr[i];
+                    arr[i] = temp;
                 }
-                else
-                    break;
-                for (int j = 0; j < arr.length; j++)
-                    System.out.print(arr[j]+" | ");
-                System.out.println();
             }
+        }
 
-        //}
+        System.out.println("\t\tRunTime: "+(System.currentTimeMillis()-start));
         return arr;
     }
 
     public static int[] selectionSort(int[] arr){
-        int[] arrfin = new int[arr.length];
+        int end = arr.length;
+        long start = System.currentTimeMillis();
 
-        return arrfin;
+        while (end != 0)
+        {
+            int big = 0;
+            for (int i = 0; i < end; i++)
+                if (arr[i] > arr[big])
+                    big = i;
+
+            if (big != end)
+            {
+                int temp = arr[end-1];
+                arr[end-1] = arr[big];
+                arr[big] = temp;
+            }
+            end -= 1;
+        }
+
+        System.out.println("\t\tRunTime: "+(System.currentTimeMillis()-start));
+        return arr;
     }
 
-    public static int[] insertionSort(int[] arr){
-        int[] arrfin = new int[arr.length];
+    public static int[] insertionSort(int[] arr) {
+        int pos = 1;
+        long start = System.currentTimeMillis();
 
-        return arrfin;
+        while (pos < arr.length) {
+            int num = arr[pos];
+            for (int i = 0; i < pos; i++) {
+                if (arr[i] > num) {
+                    for (int j = pos - 1; j >= i; j--)
+                        arr[j + 1] = arr[j];
+
+                    arr[i] = num;
+                    break;
+                }
+            }
+            pos++;
+        }
+
+        System.out.println("\t\tRunTime: "+(System.currentTimeMillis()-start));
+        return arr;
+    }
+
+    private static int[] clonetable(int[] arr, int start, int end){
+        int[] newarr = new int[end-start];
+        int pos = 0;
+
+        for (int i = start; i < end; i++) {
+            newarr[pos] = arr[i];
+            pos ++;
+        }
+
+        return  newarr;
+    }
+
+    private static int[] Merge(int[] arr)
+    {
+        if (arr.length > 1) {
+            int split = arr.length / 2;
+            int[] arr1 = Merge(clonetable(arr, 0, split));
+            int[] arr2 = Merge(clonetable(arr, split, arr.length));
+            int[] fin = new int[arr1.length + arr2.length];
+
+            for (int i = 0; i < arr1.length; i++) {
+                fin[i] = arr1[i];
+            }
+
+            for (int i = 0; i < arr2.length; i++) {
+                fin[i + arr1.length] = arr2[i];
+            }
+
+            boolean sorted = false;
+            while (!sorted) {
+                sorted = true;
+                for (int i = 0; i < fin.length - 1; i++) {
+                    if (fin[i] > fin[i + 1]) {
+                        sorted = false;
+                        int temp = fin[i + 1];
+                        fin[i + 1] = fin[i];
+                        fin[i] = temp;
+                    }
+                }
+            }
+            return fin;
+        }
+        return arr;
     }
 
     public static int[] mergeSort(int[] arr){
-        int[] arrfin = new int[arr.length];
-
-        return arrfin;
+        long start = System.currentTimeMillis();
+        int[] sorted = Merge(arr);
+        for (int i = 0; i < arr.length; i++)
+        {
+            arr[i] = sorted[i];
+        }
+        System.out.println("\t\tRunTime: "+(System.currentTimeMillis()-start));
+        return arr;
     }
 }

@@ -6,6 +6,7 @@ public class SortingTester {
         int[] numElements = {10, 100, 1000, 10000, 50000};
 
         for(int index = 0; index < numElements.length; index++){
+            System.out.println("Table #"+(index+1)+": ");
             int NUM_ELEMENTS = numElements[index];
 
             int[][] testCases = new int[4][NUM_ELEMENTS]; //0 - bubble, 1 - selection, 2 - insertion, 3 - merge
@@ -22,28 +23,32 @@ public class SortingTester {
             }
 
             //Sort them using each of the sorting methods
+
+            System.out.println("\tBubble Sort");
             QuadSorts.bubbleSort(testCases[0]);
-            QuadSorts.selectionSort(testCases[1]);
-            QuadSorts.insertionSort(testCases[2]);
-            QuadSorts.mergeSort(testCases[3]);
-
-            //Check if it worked
             if(inOrder(testCases[0]) && sameNumbers(originalList, testCases[0])){
-                System.out.println("Passed Bubble #" + (index + 1));
+                System.out.println("\t\tPassed");
             }
 
+            System.out.println("\n\tSelection Sort");
+            QuadSorts.selectionSort(testCases[1]);
             if(inOrder(testCases[1]) && sameNumbers(originalList, testCases[1])){
-                System.out.println("Passed Selection #" + (index + 1));
+                System.out.println("\t\tPassed");
             }
 
+            System.out.println("\n\tInsertion Sort");
+            QuadSorts.insertionSort(testCases[2]);
             if(inOrder(testCases[2]) && sameNumbers(originalList, testCases[2])){
-                System.out.println("Passed Insertion #" + (index + 1));
+                System.out.println("\t\tPassed");
             }
 
+            System.out.println("\n\tMerge Sort");
+            QuadSorts.mergeSort(testCases[3]);
             if(inOrder(testCases[3]) && sameNumbers(originalList, testCases[3])){
-                System.out.println("Passed Merge #" + (index + 1));
+                System.out.println("\t\tPassed");
             }
 
+            System.out.println("-------------------");
         }
 
     }
