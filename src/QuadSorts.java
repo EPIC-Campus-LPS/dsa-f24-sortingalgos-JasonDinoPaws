@@ -1,5 +1,22 @@
 public class QuadSorts {
 
+    /**
+     * <pre>
+     * Internal Variables:
+     *  Sorted - a boolean that is always going to be true unless if it finds if a element is not in order
+     *  Start - a long that gets the current milla seconds before sorting is started
+     *
+     *  While Loop > Sorted = true:
+     *  Sets Sorted to true
+     *  for 0 -> arr len
+     *  if pos > pos+1
+     *      sorted = false
+     *      switch pos and pos+1
+     *
+     *  print currentmilla - start milla
+     *  returns sorted arr
+     * </pre>
+     */
     public static int[] bubbleSort(int[] arr) {
         boolean sorted = false;
         long start = System.currentTimeMillis();
@@ -23,6 +40,22 @@ public class QuadSorts {
         return arr;
     }
 
+    /**
+     * <pre>
+     * Internal Variables:
+     *  end - a number of where the for loop should stop
+     *  Start - a long that gets the current milla seconds before sorting is started
+     *
+     *  While Loop > end == 0:
+     *      Gets the bigest number from 0 - end
+     *      compaired if big != end
+     *      switched Big and end
+     *      minus 1 from end
+     *
+     *  print currentmilla - start milla
+     *  returns sorted arr
+     * </pre>
+     */
     public static int[] selectionSort(int[] arr){
         int end = arr.length;
         long start = System.currentTimeMillis();
@@ -47,6 +80,26 @@ public class QuadSorts {
         return arr;
     }
 
+    /**
+     * <pre>
+     * Internal Variables:
+     *  pos - the number it checks at the start
+     *  Start - a long that gets the current milla seconds before sorting is started
+     *
+     *  While Loop > pos > arr.len:
+     *      gets the number at the pos
+     *      for 0 - pos
+     *          checks if i is > num
+     *              for pos-1 - i
+     *                  moves number up one
+     *          places num in i
+     *          breaks
+     *      pos ++
+     *
+     *  print currentmilla - start milla
+     *  returns sorted arr
+     * </pre>
+     */
     public static int[] insertionSort(int[] arr) {
         int pos = 1;
         long start = System.currentTimeMillis();
@@ -114,6 +167,26 @@ public class QuadSorts {
         return arr;
     }
 
+    /**
+     * <pre>
+     *     clonetable - clones arr from start to end
+     *
+     *     Merge:
+     *     checks if given array is more than 1
+     *      generates the Point
+     *      Merage(0 - Point)
+     *      Merage(Point - end)
+     *      combines both merages
+     *
+     *      Sorts the final array
+     *      returns the Final array
+     *     else
+     *      returns arr
+     *
+     *  print currentmilla - start milla
+     *  returns sorted arr
+     * </pre>
+     */
     public static int[] mergeSort(int[] arr){
         long start = System.currentTimeMillis();
         int[] sorted = Merge(arr);

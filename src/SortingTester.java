@@ -68,7 +68,7 @@ public class SortingTester {
 
     /**
      * This function will determine whether the two passed arrays
-     * (one sorted & one not) have the same number of each number.
+     * (one sorted and one not) have the same number of each number.
      */
     public static boolean sameNumbers(int[] arr1, int[] arr2){
         int[] fTable1 = frequencyTable(arr1);
@@ -84,6 +84,11 @@ public class SortingTester {
         return true;
     }
 
+    /**
+     *
+     * @param arr
+     * @return
+     */
     public static int[] frequencyTable(int[] arr){
         //find min & max
         int min = arr[0];
