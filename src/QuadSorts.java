@@ -169,9 +169,10 @@ public class QuadSorts {
 
     /**
      * <pre>
-     *     clonetable - clones arr from start to end
+     *     private static int[] clonetable(int[] arr, int start, int end)
+     *     clones arr from start to end
      *
-     *     Merge:
+     *     private static int[] Merge(int[] arr)
      *     checks if given array is more than 1
      *      generates the Point
      *      Merage(0 - Point)
