@@ -1,3 +1,6 @@
+import java.awt.geom.QuadCurve2D;
+import java.util.stream.StreamSupport;
+
 public class QuadSorts {
 
     /**
@@ -142,13 +145,11 @@ public class QuadSorts {
             int[] arr2 = Merge(clonetable(arr, split, arr.length));
             int[] fin = new int[arr1.length + arr2.length];
 
-            for (int i = 0; i < arr1.length; i++) {
+            for (int i = 0; i < arr1.length; i++)
                 fin[i] = arr1[i];
-            }
 
-            for (int i = 0; i < arr2.length; i++) {
+            for (int i = 0; i < arr2.length; i++)
                 fin[i + arr1.length] = arr2[i];
-            }
 
             boolean sorted = false;
             while (!sorted) {
@@ -195,6 +196,82 @@ public class QuadSorts {
         {
             arr[i] = sorted[i];
         }
+        System.out.println("\t\tRunTime: "+(System.currentTimeMillis()-start));
+        return arr;
+    }
+
+    private static int[] Quick(int[] arr,int start, int end)
+    {
+        int piv = end-1;
+        if (piv > start && piv > -1 && piv < end)
+        {
+            int num = arr[piv];
+            int[] fin = new int[end-start];
+            int less = 0;
+            int more = fin.length-1;
+
+            for (int i = start; i < piv; i++) {
+                if (arr[i] <= num) {
+                    fin[less] = arr[i];
+                    less++;
+                } else if (arr[i] > num) {
+                    fin[more] = arr[i];
+                    more--;
+                }
+            }
+
+            fin[less] = num;
+            num = 0;
+            for (int i = start;i < end; i++)
+            {
+                arr[i] = fin[num];
+                num ++;
+            }
+
+            Quick(arr,start,start+less);
+            Quick(arr,start+less,end);
+            return fin;
+        }
+        return arr;
+    }
+
+    /**
+     * <pre>
+     *     private static int[] Quick(int[] arr,int start, int end)
+     *      creates the pivit form end-1
+     *      checks if the pivit is within bounds of the start and end
+     *      gets the number at pivit
+     *      creates new array with the length between start and end
+     *      creates the pos of less and more
+     *
+     *      for start - piv
+     *          if less than piv
+     *              adds where last pos was
+     *              last add
+     *          else if more than piv
+     *              adds where more pos was
+     *              more substract
+     *
+     *       puts num in the middle
+     *
+     *       creates num at 0
+     *       for start - end
+     *          returned arr pos = fin of num pos
+     *          num adds
+     *
+     *       Quick arr start - start+last
+     *       Quick arr start+last - end
+     *       return fin
+     *
+     *  print currentmilla - start milla
+     *  returns sorted arr
+     * </pre>
+     */
+    public static int[] quickSort(int[] arr)
+    {
+        long start = System.currentTimeMillis();
+        Quick(arr,0,arr.length);
+
         System.out.println("\t\tRunTime: "+(System.currentTimeMillis()-start));
         return arr;
     }

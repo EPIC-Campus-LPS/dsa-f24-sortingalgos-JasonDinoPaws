@@ -9,7 +9,7 @@ public class SortingTester {
             System.out.println("Table #"+(index+1)+": ");
             int NUM_ELEMENTS = numElements[index];
 
-            int[][] testCases = new int[4][NUM_ELEMENTS]; //0 - bubble, 1 - selection, 2 - insertion, 3 - merge
+            int[][] testCases = new int[5][NUM_ELEMENTS]; //0 - bubble, 1 - selection, 2 - insertion, 3 - merge, 4 - quick
 
             //Build a random array
             int[] originalList = new int[NUM_ELEMENTS];
@@ -45,6 +45,12 @@ public class SortingTester {
             System.out.println("\n\tMerge Sort");
             QuadSorts.mergeSort(testCases[3]);
             if(inOrder(testCases[3]) && sameNumbers(originalList, testCases[3])){
+                System.out.println("\t\tPassed");
+            }
+
+            System.out.println("\n\tQuick Sort");
+            QuadSorts.quickSort(testCases[4]);
+            if(inOrder(testCases[4]) && sameNumbers(originalList, testCases[4])){
                 System.out.println("\t\tPassed");
             }
 
